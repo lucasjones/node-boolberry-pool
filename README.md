@@ -1,10 +1,8 @@
-node-cryptonote-pool
-====================
+node-boolberry-pool
+===================
 
-High performance Node.js (with native C addons) mining pool for CryptoNote based coins such as Bytecoin, Monero, QuazarCoin, Fantomcoin, HoneyPenny, etc..
+High performance Node.js (with native C addons) mining pool for Boolberry, based on [node-cryptonote-pool](https://github.com/zone117x/node-cryptonote-pool)
 Comes with lightweight example front-end script which uses the pool's AJAX API.
-
-
 
 #### Table of Contents
 * [Features](#features)
@@ -53,20 +51,10 @@ Comes with lightweight example front-end script which uses the pool's AJAX API.
 ### Community / Support
 
 * [CryptoNote Forum](https://forum.cryptonote.org/)
-* [Bytecoin Github](https://github.com/amjuarez/bytecoin)
-* [Monero Github](https://github.com/monero-project/bitmonero)
+* [Boolberry Github](https://github.com/cryptozoidberg/boolberry)
 * IRC (freenode)
-  * Support / general discussion join #monero: https://webchat.freenode.net/?channels=#monero
-  * Development discussion join #monero-dev: https://webchat.freenode.net/?channels=#monero-dev
-
-
-#### Pools Using This Software
-
-* http://moneropool.org
-* http://moneropool.com
-* http://extremepool.org
-* http://mon.hashharder.com
-
+  * Support / general discussion join #boolberry: https://webchat.freenode.net/?channels=#boolberry
+  * Development discussion join #boolberry-dev: https://webchat.freenode.net/?channels=#boolberry-dev
 
 Usage
 ===
@@ -90,7 +78,7 @@ you are using - a good place to start with redis is [data persistence](http://re
 Clone the repository and run `npm update` for all the dependencies to be installed:
 
 ```bash
-git clone https://github.com/zone117x/node-cryptonote-pool.git pool
+git clone https://github.com/LucasJones/node-boolberry-pool.git pool
 cd pool
 npm update
 ```
@@ -104,10 +92,10 @@ Explanation for each field:
 ```javascript
 {
     /* Used for storage in redis so multiple coins can share the same redis instance. */
-    "coin": "monero",
+    "coin": "boolberry",
 
     /* Used for front-end display */
-    "symbol": "MRO",
+    "symbol": "BBR",
 
     /* Specifies the level of log output verbosity. Anything more severe than the level specified
        will also be logged. */
@@ -124,13 +112,13 @@ Explanation for each field:
     "poolHost": "example.com",
 
     /* IRC Server and room used for embedded KiwiIRC chat on front-end. */
-    "irc": "irc.freenode.net/#monero",
+    "irc": "irc.freenode.net/#boolberry",
 
     /* Contact email address. */
     "email": "support@cryppit.com",
 
     /* Market display widget params from https://www.cryptonator.com/widget */
-    "cryptonatorWidget": "num=2&base_0=Monero%20(MRO)&target_0=Bitcoin%20(BTC)&base_1=Monero%20(MRO)&target_1=US%20Dollar%20(USD)",
+    "cryptonatorWidget": "num=2&base_0=Boolberry%20(BBR)&target_0=Bitcoin%20(BTC)&base_1=Boolberry%20(BBR)&target_1=US%20Dollar%20(USD)",
 
     /* Download link to cryptonote-easy-miner for Windows users. */
     "easyminerDownload": "https://github.com/zone117x/cryptonote-easy-miner/releases/",
@@ -140,7 +128,7 @@ Explanation for each field:
 
     /* Used for front-end block links. For other coins it can be changed, for example with
        Bytecoin you can use "https://minergate.com/blockchain/bcn/block/". */
-    "blockchainExplorer": "http://monerochain.info/block/",
+    "blockchainExplorer": "",
 
     /* Modular Pool Server */
     "poolServer": {
@@ -153,7 +141,7 @@ Explanation for each field:
         "clusterForks": "auto",
 
         /* Address where block rewards go, and miner payments come from. */
-        "poolAddress": "4AsBy39rpUMTmgTUARGq2bFQWhDhdQNekK5v4uaLU699NPAnx9CubEJ82AkvD5ScoAZNYRwBxybayainhyThHAZWCdKmPYn"
+        "poolAddress": "1L1ZPC9XodC6g5BX8j8m3vcdkXPiZrVF7RcERWE879coQDWiztUbkkVZ86o43P27Udb3qxL4B41gbaGpvj3nS7DgFZauAZE"
 
         /* Poll RPC daemons for new blocks every this many milliseconds. */
         "blockRefreshInterval": 1000,
@@ -164,23 +152,15 @@ Explanation for each field:
         "ports": [
             {
                 "port": 5555, //Port for mining apps to connect to
-                "protocol": "tcp",
-                "difficulty": 200, //Initial difficulty miners are set to
+                "protocol": "http",
+                "difficulty": 400000, //Initial difficulty miners are set to
                 "desc": "Mid range CPUs" //Description of port
             },
             {
                 "port": 7777,
-                "protocol": "tcp",
-                "difficulty": 2000,
-                "desc": "High end CPUs"
-            },
-            /* Old, inefficient protocol which has worse hashrate, higher network/CPU server load,
-               higher orphan block percent, more error prone, etc. */
-            {
-                "port": 1111,
                 "protocol": "http",
-                "difficulty": 500,
-                "desc": "Old protocol"
+                "difficulty": 800000,
+                "desc": "High end CPUs"
             }
         ],
 
@@ -188,12 +168,12 @@ Explanation for each field:
            individual miners based on their hashrate in order to lower networking and CPU
            overhead. */
         "varDiff": {
-            "minDiff": 2, //Minimum difficulty
-            "maxDiff": 10000,
+            "minDiff": 50000, //Minimum difficulty
+            "maxDiff": 10000000, //Maximum difficulty
             "targetTime": 100, //Try to get 1 share per this many seconds
             "retargetTime": 30, //Check to see if we should retarget every this many seconds
             "variancePercent": 30, //Allow time to very this % from target without retargeting
-            "maxJump": 1000 //Limit how much diff can increase/decrease in a single retargetting
+            "maxJump": 20000 //Limit how much diff can increase/decrease in a single retargetting
         },
 
         /* Feature to trust share difficulties from miners which can significantly reduce CPU load. */
@@ -338,13 +318,14 @@ curl -X POST http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"test","m
 
 Donations
 ---------
-* MRO: `48Y4SoUJM5L3YXBEfNQ8bFNsvTNsqcH5Rgq8RF7BwpgvTBj2xr7CmWVanaw7L4U9MnZ4AG7U6Pn1pBhfQhFyFZ1rL1efL8z`
-* BCN: `asdf`
+* BBR: `1KfzJfoA2pbB6J2ee2JG7wYSqwKtdoqs97pVMdB471FXArr1ce52Wm1BCWdAv9JAxZTa7wcUkq2s695Nmn59HgZ6VVnSjfp`
+* XMR/MRO: `41id8jHp2UiVuSKJcq9D78CQp9Ku2ecqvWL76kUCMDxzA5Q4rAbTHJSijWC33aPjMD92Dbs8XBG3yU3neWGFfmB57WNkZxb`
+* BTC: `1LBvA9X7KToPPKJFL8E5qdePhUoYCJiEfW`
 
 Credits
 ===
 
-* [LucasJones](//github.com/LucasJones) - Co-dev on this project; did tons of debugging for binary structures and fixing them. Pool couldn't have been made without him.
+* [zone117x](//github.com/zone117x) - Co-Dev on [node-cryptonote-pool](https://github.com/zone117x/node-cryptonote-pool), did a ton of work on the pool
 * [surfer43](//github.com/iamasupernova) - Did lots of testing during development to help figure out bugs and get them fixed
 * [Wolf0](https://bitcointalk.org/index.php?action=profile;u=80740) - Helped try to deobfuscate some of the daemon code for getting a bug fixed
 * [Tacotime](https://bitcointalk.org/index.php?action=profile;u=19270) - helping with figuring out certain problems and lead the bounty for this project's creation

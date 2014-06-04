@@ -10,7 +10,7 @@
 
     "poolHost": "cryppit.com",
 
-    "irc": "irc.freenode.net/#monero",
+    "irc": "irc.freenode.net/#boolberry",
 
     "email": "support@cryppit.com",
 
@@ -20,7 +20,7 @@
 
     "simplewalletDownload": "http://bit.ly/monero-starter-pack",
 
-    "blockchainExplorer": "http://monerochain.info/block/",
+    "blockchainExplorer": "",
 
     "poolServer": {
         "enabled": true,
@@ -48,7 +48,7 @@
             "targetTime": 100,
             "retargetTime": 30,
             "variancePercent": 30,
-            "maxJump": 10000
+            "maxJump": 20000
         },
         "shareTrust": {
             "enabled": true,
