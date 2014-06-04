@@ -1,7 +1,7 @@
 {
 
-    "coin": "monero",
-    "symbol": "MRO",
+    "coin": "boolberry",
+    "symbol": "BBR",
 
     "logLevel": "debug",
     "logColors": true,
@@ -14,7 +14,7 @@
 
     "email": "support@cryppit.com",
 
-    "cryptonatorWidget": "num=2&base_0=Monero%20(MRO)&target_0=Bitcoin%20(BTC)&base_1=Monero%20(MRO)&target_1=US%20Dollar%20(USD)",
+    "cryptonatorWidget": "num=2&base_0=Boolberry%20(BBR)&target_0=Bitcoin%20(BTC)&base_1=Boolberry%20(BBR)&target_1=US%20Dollar%20(USD)",
 
     "easyminerDownload": "https://github.com/zone117x/cryptonote-easy-miner/releases/",
 
@@ -25,36 +25,30 @@
     "poolServer": {
         "enabled": true,
         "clusterForks": "auto",
-        "poolAddress": "4AsBy39rpUMTmgTUARGq2bFQWhDhdQNekK5v4uaLU699NPAnx9CubEJ82AkvD5ScoAZNYRwBxybayainhyThHAZWCdKmPYn",
+        "poolAddress": "1L1ZPC9XodC6g5BX8j8m3vcdkXPiZrVF7RcERWE879coQDWiztUbkkVZ86o43P27Udb3qxL4B41gbaGpvj3nS7DgFZauAZE",
         "blockRefreshInterval": 1000,
         "minerTimeout": 900,
         "ports": [
             {
                 "port": 5555,
-                "protocol": "tcp",
-                "difficulty": 200,
+                "protocol": "http",
+                "difficulty": 400000,
                 "desc": "Mid range CPUs"
             },
             {
                 "port": 7777,
-                "protocol": "tcp",
-                "difficulty": 2000,
-                "desc": "High end CPUs"
-            },
-            {
-                "port": 1111,
                 "protocol": "http",
-                "difficulty": 500,
-                "desc": "Old protocol"
+                "difficulty": 800000,
+                "desc": "High end CPUs"
             }
         ],
         "varDiff": {
-            "minDiff": 2,
-            "maxDiff": 10000,
+            "minDiff": 50000,
+            "maxDiff": 10000000,
             "targetTime": 100,
             "retargetTime": 30,
             "variancePercent": 30,
-            "maxJump": 1000
+            "maxJump": 10000
         },
         "shareTrust": {
             "enabled": true,
