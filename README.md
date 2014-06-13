@@ -187,7 +187,7 @@ Explanation for each field:
 
         /* Only used with old http protocol and only works with the simpleminer. */
         "longPolling": {
-            "enabled": true,
+            "enabled": false,
             "timeout": 8500
         },
 
