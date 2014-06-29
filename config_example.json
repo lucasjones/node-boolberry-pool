@@ -16,11 +16,11 @@
 
     "cryptonatorWidget": "num=2&base_0=Boolberry%20(BBR)&target_0=Bitcoin%20(BTC)&base_1=Boolberry%20(BBR)&target_1=US%20Dollar%20(USD)",
 
-    "easyminerDownload": "https://github.com/zone117x/cryptonote-easy-miner/releases/",
+    "easyminerDownload": "http://boolberry.com/downloads.html",
 
-    "simplewalletDownload": "http://bit.ly/monero-starter-pack",
+    "simplewalletDownload": "http://boolberry.com/downloads.html",
 
-    "blockchainExplorer": "",
+    "blockchainExplorer": "http://bbr.cryptostats.org/block/",
 
     "poolServer": {
         "enabled": true,
@@ -29,6 +29,12 @@
         "blockRefreshInterval": 1000,
         "minerTimeout": 900,
         "ports": [
+            {
+                "port": 3333,
+                "protocol": "tcp",
+                "difficulty": 100000,
+                "desc": "Stratum Port"
+            },
             {
                 "port": 5555,
                 "protocol": "http",
@@ -41,6 +47,7 @@
                 "difficulty": 800000,
                 "desc": "High end CPUs"
             }
+            
         ],
         "varDiff": {
             "minDiff": 50000,
@@ -88,7 +95,7 @@
 
     "daemon": {
         "host": "127.0.0.1",
-        "port": 18081
+        "port": 10102
     },
 
     "wallet": {
